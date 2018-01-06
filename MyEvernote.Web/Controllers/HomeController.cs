@@ -13,6 +13,7 @@ namespace MyEvernote.Web.Controllers
         public ActionResult Index()
         {
             NoteManager nm = new NoteManager();
+
             return View(nm.GetAllNote());
         }
     }
