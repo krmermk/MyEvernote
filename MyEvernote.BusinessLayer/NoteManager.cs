@@ -14,7 +14,7 @@ namespace MyEvernote.BusinessLayer
 
         public List<Note> GetAllNote()
         {
-            return repoNote.List();
+            return repoNote.List(); 
         }
 
     }
