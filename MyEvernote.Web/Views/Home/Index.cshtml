@@ -49,22 +49,28 @@
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">
+
                             <div class="caption">
                                 <h4>
                                     <a href="#">@note.Title</a>
                                 </h4>
                                 <h6 class="pull-left"><span class="glyphicon glyphicon-user"></span> @note.NvgUser.UserName</h6>
                                 <h6 class="pull-right"><span class="glyphicon glyphicon-time"></span> @note.ModifiedOn.ToString("dd.MM.yy HH:mm")</h6><br /><br />
-                                <p>
-                                    @if (string.IsNullOrEmpty(note.Text) == false && note.Text.Length > 30)
-                                    {
-                                        @(note.Text.Substring(0, 40))
-                                    }
-                                    else
-                                    {
+
+                                @if (string.IsNullOrEmpty(note.Text) == false && note.Text.Length > 67)
+                                {
+                                    <p>
+                                        @(note.Text.Substring(0, 67) + "...")
+                                    </p>
+                                    <p class="pull-right"><a href="#" class="btn btn-default btn-xs">devamı<span class="glyphicon glyphicon-chevron-right"></span> </a></p>
+                                }
+                                else
+                                {
+                                    <p>
                                         @note.Text
-                                    }
-                                </p>
+                                    </p>
+                                }
+
                             </div>
                             <div>
                                 <hr />
