@@ -12,21 +12,21 @@ namespace MyEvernote.Web.Controllers
     public class CategoryController : Controller
     {
         // GET: Category
-        public ActionResult Select(int? id)
-        {
-            if (id==null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CategoryManager cm = new CategoryManager();
-            Category cat=cm.GetCategoryById(id.Value);
+        //public ActionResult Select(int? id)
+        //{
+        //    if (id==null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    CategoryManager cm = new CategoryManager();
+        //    Category cat=cm.GetCategoryById(id.Value);
 
-            if (cat==null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(cat.NvgNote);
-        }
+        //    if (cat==null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    TempData["cm"] = cat.NvgNote;
+        //    return RedirectToAction("Index","Home");
+        //}
     }
 }

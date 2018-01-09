@@ -1,0 +1,154 @@
+﻿
+.fieldcontainer, .relcontainer {
+
+    border-style: solid;
+    padding: 10px;
+}
+
+ul.fieldItemList {
+    padding-left: 20px;
+    margin-bottom: 0px;
+}
+
+div.fieldItem:hover {
+    color: #d9534f;
+}
+
+div.fieldItem input:hover {
+    color: #333;
+}
+
+input:not([type=checkbox]):not([type=radio]) {
+    border-top: 0 solid;
+    border-right: 0 solid;
+    border-bottom: 1px solid;
+    border-left: 0 solid;
+    border-color: #999;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 94%;
+}
+
+textarea {
+    background-color: transparent;
+    border-top: 0 solid;
+    border-right: 0 solid;
+    border-bottom: 0 solid;
+    border-left: 2px solid;
+    border-color: #999;
+    padding-left: 6px;
+    margin-left: 2px;
+    width: 100%;
+    resize: vertical;
+}
+
+button, submit {
+    border: none;
+}
+
+textarea:focus, input:focus, select.arcPointSelect:focus {
+    outline: none;
+    border-color: #00d8e8;
+}
+
+hr.lowpadding {
+    padding: 0px;
+    margin: 2px;
+    margin-bottom: 10px;
+    border-color: #999;
+}
+
+    hr.lowpadding::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+.fieldTitle {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button.redX {
+    color: grey;
+    background-color: transparent;
+    padding-right: 0;
+    padding-top: 0;
+}
+
+    button.redX:hover {
+        color: #d9534f;
+    }
+
+button.addFieldItem {
+    background-color: transparent;
+    padding-right: 0;
+    padding-left: 1px;
+    color: grey;
+}
+
+    button.addFieldItem:hover {
+        color: #5cb85c;
+    }
+
+    button.addFieldItem span.glyphicon {
+        margin-right: 11px;
+    }
+
+/*****************************/
+.checkbox {
+    margin: 0px;
+    width: inherit;
+}
+
+select.arcPointSelect {
+    background-color: transparent;
+    border: 0 solid;
+    padding-left: 0px;
+    padding-right: 5px;
+    width: 100%;
+}
+
+.relationshipFirstRow input.underlined, .relationshipFirstRow select.underlined {
+    border-bottom: 1px solid;
+    border-color: #999;
+    height: 20px;
+    padding-bottom: 3px;
+    padding-top: 0px;
+}
+
+    .relationshipFirstRow input.underlined:focus, .relationshipFirstRow select.underlined:focus {
+        border-color: #00d8e8;
+    }
+
+input.underlined:focus, select.underlined:focus {
+    border-color: #00d8e8;
+}
+
+.relationshipFirstRow {
+    margin-bottom: 10px;
+}
+
+select.arcPointSelect option:enabled {
+    color: #333;
+}
+
+/*****************************/
+.half {
+    width: 49%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.form-signin input:not([type=checkbox]):not([type=radio]) {
+    width: 100%;
+}
+
+.outlined {
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+}

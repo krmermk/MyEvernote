@@ -9,7 +9,7 @@
 <div class="list-group">
     @foreach (Category item in list)
     {
-        <a href="/Category/Select/@item.ID" title="@item.Description" class="list-group-item"><span class="glyphicon glyphicon-arrow-right"></span> @item.Title</a>
+        <a href="/Home/ByCategory/@item.ID" title="@item.Description" class="list-group-item"><span class="glyphicon glyphicon-arrow-right"></span> @item.Title</a>
     }
 
 </div>

@@ -28,6 +28,11 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
 
         }
 
+        public IQueryable<T> ListQueryable()
+        {
+            return _set.AsQueryable<T>();
+        }
+
         public List<T> List(Expression<Func<T,bool>> where)=> _set.Where(where).ToList();     
 
         public int Insert(T obj)
@@ -57,6 +62,6 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
             return _set.FirstOrDefault(where);
         }
 
-  
+       
     }
 }
