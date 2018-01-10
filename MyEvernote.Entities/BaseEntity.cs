@@ -12,14 +12,17 @@ namespace MyEvernote.Entities
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
+        DateTime now = DateTime.Now;
 
-        private DateTime _createdOn = DateTime.Now;        
+        private DateTime _createdOn = DateTime.Now;
+        private DateTime _modifiedOn = DateTime.Now;
+
         public DateTime CreatedOn
         {
             get { return _createdOn; }
             set { _createdOn = value; }
         }
-        public DateTime ModifiedOn { get; set; }
+        public DateTime ModifiedOn { get {return _modifiedOn; } set { _modifiedOn=value; } }
 
         [Required,StringLength(30)]
         

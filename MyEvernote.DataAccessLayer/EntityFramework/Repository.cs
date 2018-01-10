@@ -1,5 +1,6 @@
 ﻿using MyEvernote.DataAccessLayer;
 using MyEvernote.DataAccessLayer.Interface;
+using MyEvernote.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -36,7 +37,7 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
         public List<T> List(Expression<Func<T,bool>> where)=> _set.Where(where).ToList();     
 
         public int Insert(T obj)
-        {
+        {           
             _set.Add(obj);
             return Save();
         }
@@ -48,7 +49,12 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
 
         public int Delete(T obj)
         {
-            _set.Remove(obj);
+            if (obj is BaseEntity)
+            {
+                BaseEntity be = obj as BaseEntity;
+                be.ModifiedOn = DateTime.Now;
+                be.IsDeleted = true;
+            }
             return Save();
         }
             

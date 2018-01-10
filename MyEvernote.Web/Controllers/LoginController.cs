@@ -1,4 +1,4 @@
-﻿using MyEvernote.Web.ViewModels;
+﻿using MyEvernote.Entities.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +16,11 @@ namespace MyEvernote.Web.Controllers
         }
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
+        {
+            return View();
+        }
+
+        public ActionResult Logout()
         {
             return View();
         }
