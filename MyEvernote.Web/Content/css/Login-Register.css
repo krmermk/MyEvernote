@@ -1,6 +1,5 @@
 ﻿
 .fieldcontainer, .relcontainer {
-
     border-style: solid;
     padding: 10px;
 }
@@ -152,3 +151,15 @@ select.arcPointSelect option:enabled {
     border-width: 1px;
     border-radius: 5px;
 }
+
+.validation-summary-errors {
+    border: 2px dotted #ff0000;
+    border-radius: 8px;
+    background-color: #d76663;
+}
+
+    .validation-summary-errors ul {
+        list-style-type: none;
+        padding: 10px;
+        color: white;
+    }

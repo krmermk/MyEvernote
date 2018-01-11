@@ -26,7 +26,7 @@ namespace MyEvernote.Web.Controllers
                 Result<EvernoteUser> res = eum.RegisterUser(model);
                 if (res.Errors.Count > 0)
                 {
-                    res.Errors.ForEach(x => ModelState.AddModelError("", x));
+                    res.Errors.ForEach(x => ModelState.AddModelError("", x.Value));
                     return View(model);
                 }
 

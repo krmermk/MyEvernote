@@ -1,4 +1,6 @@
-﻿using MyEvernote.Entities.ValueObjects;
+﻿using MyEvernote.BusinessLayer;
+using MyEvernote.Entities;
+using MyEvernote.Entities.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +19,20 @@ namespace MyEvernote.Web.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                EvernoteUserManager eum = new EvernoteUserManager();
+                Result<EvernoteUser> res = eum.LoginUser(model);
+                if (res.Errors.Count > 0)
+                {
+                    res.Errors.ForEach(x => ModelState.AddModelError("", x.Value));
+                    return View(model);
+                }
+                Session["login"] = res.Results;
+
+                return RedirectToAction("Index", "Home");
+            }
+            return View(model);
         }
 
         public ActionResult Logout()
