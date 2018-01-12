@@ -164,10 +164,6 @@
       <Project>{b06e6bf8-1a8f-473a-a55c-762ac8bbe81a}</Project>
       <Name>MyEvernote.BusinessLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyEvernote.Common\MyEvernote.Common.csproj">
-      <Project>{e5522bad-973a-438e-ad4e-6c31a8a991e8}</Project>
-      <Name>MyEvernote.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MyEvernote.Entities\MyEvernote.Entities.csproj">
       <Project>{a8cb62f4-dd54-401f-aba2-c345a465d71b}</Project>
       <Name>MyEvernote.Entities</Name>
