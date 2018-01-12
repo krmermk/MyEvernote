@@ -8,6 +8,6 @@ namespace MyEvernote.Common
 {
    public static class App
     {
-        public static ICommon Cnm = new DefaultCommon();
+        public static ICommon Cmn = new DefaultCommon();
     }
 }

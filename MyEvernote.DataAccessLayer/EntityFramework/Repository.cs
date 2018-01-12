@@ -1,4 +1,5 @@
-﻿using MyEvernote.DataAccessLayer;
+﻿using MyEvernote.Common;
+using MyEvernote.DataAccessLayer;
 using MyEvernote.DataAccessLayer.Interface;
 using MyEvernote.Entities;
 using System;
@@ -41,7 +42,7 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
             if (obj is BaseEntity)
             {
                 BaseEntity be = obj as BaseEntity;
-                be.ModifiedUser = "system";
+                be.ModifiedUser = App.Cmn.GetUsername();
             }
             _set.Add(obj);
             return Save();
@@ -57,7 +58,7 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
             if (obj is BaseEntity)
             {
                 BaseEntity be = obj as BaseEntity;
-                be.ModifiedUser = "system";
+                be.ModifiedUser = App.Cmn.GetUsername();
                 be.IsDeleted = true;
 
             }
