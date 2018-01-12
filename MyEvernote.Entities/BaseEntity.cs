@@ -10,30 +10,32 @@ namespace MyEvernote.Entities
 {
     public class BaseEntity
     {
-        [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        DateTime now = DateTime.Now;
+
 
         private DateTime _createdOn = DateTime.Now;
         private DateTime _modifiedOn = DateTime.Now;
+        private bool _isDelted = false;
 
         public DateTime CreatedOn
         {
             get { return _createdOn; }
             set { _createdOn = value; }
         }
-        public DateTime ModifiedOn { get {return _modifiedOn; } set { _modifiedOn=value; } }
+        public DateTime ModifiedOn
+        {
+            get { return _modifiedOn; }
+            set { _modifiedOn = value; }
+        }
 
-        [Required,StringLength(30)]
-        
+        [Required, StringLength(30)]
         public string ModifiedUser { get; set; }
-     
-        private bool isDelted = false;
         public bool IsDeleted
         {
-            get { return isDelted; }
-            set { isDelted = value; }
+            get { return _isDelted; }
+            set { _isDelted = value; }
         }
-        
+
     }
 }

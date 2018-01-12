@@ -10,15 +10,15 @@ namespace MyEvernote.BusinessLayer
     //KeyValuePair:içerisine İki farklı tipalabiliyor.
     public class Result<T> where T : class
     {
-        public List<KeyValuePair<ErrorMessageCode,string>> Errors { get; set; }
+        public List<ErrorMessageObj> Errors { get; set; }
         public T Results { get; set; }
         public Result()
         {
-            Errors = new List<KeyValuePair<ErrorMessageCode, string>>();
+            Errors = new List<ErrorMessageObj>();
         }
         public void AddError(ErrorMessageCode code,string message)
         {
-            Errors.Add(new KeyValuePair<ErrorMessageCode, string>(code, message));
+            Errors.Add(new ErrorMessageObj() {Code=code,Message=message });
         }
     }
 }

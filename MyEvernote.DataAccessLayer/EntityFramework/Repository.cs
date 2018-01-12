@@ -37,7 +37,12 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
         public List<T> List(Expression<Func<T,bool>> where)=> _set.Where(where).ToList();     
 
         public int Insert(T obj)
-        {           
+        {
+            if (obj is BaseEntity)
+            {
+                BaseEntity be = obj as BaseEntity;
+                be.ModifiedUser = "system";
+            }
             _set.Add(obj);
             return Save();
         }
@@ -52,8 +57,9 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
             if (obj is BaseEntity)
             {
                 BaseEntity be = obj as BaseEntity;
-                be.ModifiedOn = DateTime.Now;
+                be.ModifiedUser = "system";
                 be.IsDeleted = true;
+
             }
             return Save();
         }

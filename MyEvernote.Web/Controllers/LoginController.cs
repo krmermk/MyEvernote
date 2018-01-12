@@ -25,7 +25,8 @@ namespace MyEvernote.Web.Controllers
                 Result<EvernoteUser> res = eum.LoginUser(model);
                 if (res.Errors.Count > 0)
                 {
-                    res.Errors.ForEach(x => ModelState.AddModelError("", x.Value));
+                    res.Errors.ForEach(x => ModelState.AddModelError("", x.Message));
+
                     return View(model);
                 }
                 Session["login"] = res.Results;
@@ -37,7 +38,9 @@ namespace MyEvernote.Web.Controllers
 
         public ActionResult Logout()
         {
-            return View();
+            Session.Clear();
+
+            return RedirectToAction("Login");
         }
     }
 }
