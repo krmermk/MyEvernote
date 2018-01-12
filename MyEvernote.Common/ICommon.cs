@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyEvernote.Common
 {
-    interface ICommon
+    public interface ICommon
     {
         string GetUsername();
     }

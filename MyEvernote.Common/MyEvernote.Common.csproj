@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E5522BAD-973A-438E-AD4E-6C31A8A991E8}</ProjectGuid>
+    <ProjectGuid>{7DC59AF5-913E-41CA-A337-96D96F06589B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MyEvernote.Common</RootNamespace>

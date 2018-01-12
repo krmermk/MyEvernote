@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace MyEvernote.Common
 {
-    public static class App
+   public static class App
     {
-        public static ICommon Common = new DefaultCommon();
+        public static ICommon Cnm = new DefaultCommon();
     }
 }
