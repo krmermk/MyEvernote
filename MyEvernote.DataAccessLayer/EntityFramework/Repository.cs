@@ -50,6 +50,11 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
 
         public int Update(T obj)
         {
+            if (obj is BaseEntity)
+            {
+                BaseEntity be = obj as BaseEntity;
+                be.ModifiedUser = App.Cmn.GetUsername();
+            }
             return Save();
         }
 

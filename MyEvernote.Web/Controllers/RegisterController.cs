@@ -1,5 +1,6 @@
 ﻿using MyEvernote.BusinessLayer;
 using MyEvernote.Entities;
+using MyEvernote.Entities.Messages;
 using MyEvernote.Entities.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -30,19 +31,48 @@ namespace MyEvernote.Web.Controllers
                     return View(model);
                 }
 
-               return RedirectToAction("RegisterOK");
+                return RedirectToAction("RegisterOK");
             }
             return View(model);
-           
+
         }
 
         public ActionResult RegisterOK()
         {
             return View();
         }
-        public ActionResult UserActivate(Guid activete_id)
+
+        public ActionResult UserActivate(Guid id)
+        {
+            if (ModelState.IsValid)
+            {
+                EvernoteUserManager eum = new EvernoteUserManager();
+                Result<EvernoteUser> res = eum.ActivateUser(id);
+                if (res.Errors.Count>0)
+                {
+                    TempData["errors"] = res.Errors;
+                    RedirectToAction("UserActivateCancel");
+                }
+                return RedirectToAction("UserActivateOk");
+            }
+
+            return View();
+        }
+
+        public ActionResult UserActivateOk()
         {
             return View();
+        }
+
+        public ActionResult UserActivateCancel()
+        {
+            List<ErrorMessageObj> errors = null;
+            if (TempData["errors"]!=null)
+            {
+                errors = TempData["errors"] as List<ErrorMessageObj>;
+            }
+            
+            return View(errors);
         }
     }
 }

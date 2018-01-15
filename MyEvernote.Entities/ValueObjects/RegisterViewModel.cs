@@ -8,6 +8,14 @@ namespace MyEvernote.Entities.ValueObjects
 {
     public class RegisterViewModel
     {
+        [Required(ErrorMessage = "Ad alanı boş geçilemez."),
+          StringLength(25, ErrorMessage = "Kullanıcı adı max.{0} karakter olmalı")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Soyad alanı boş geçilemez."),
+          StringLength(25, ErrorMessage = "Kullanıcı adı max.{0} karakter olmalı")]
+        public string Surname { get; set; }
+
         [Required(ErrorMessage ="Kullanıcı Adı alanı boş geçilemez."),
             StringLength(30,ErrorMessage ="Kullanıcı adı max.{0} karakter olmalı")]
         public string Username { get; set; }

@@ -1,4 +1,5 @@
-﻿using MyEvernote.DataAccessLayer.EntityFramework;
+﻿using MyEvernote.Common.Helpers;
+using MyEvernote.DataAccessLayer.EntityFramework;
 using MyEvernote.Entities;
 using MyEvernote.Entities.Messages;
 using MyEvernote.Entities.ValueObjects;
@@ -33,20 +34,23 @@ namespace MyEvernote.BusinessLayer
             {
                 int dbResult = repoUser.Insert(new EvernoteUser()
                 {
-                    Name = "deneme",
-                    Surname = "deneme",
+                    Name =data.Name,
+                    Surname = data.Surname,
                     UserName = data.Username,
                     Email = data.Email,
                     Password = data.Password,
-                    ModifiedUser = "User6",
                     ActivateGuid = Guid.NewGuid(),
-                    isActive = true
+                    isActive = false
 
                 });
                 if (dbResult > 0)
                 {
                     rs.Results = repoUser.Find(x => x.Email == data.Email && x.UserName == data.Username);
-                    //TODO :aktivasyon mail'i göderilecek
+                    //Kullanıcı hesabı aktifleştirmek için mail gönderme.
+                    string siteUrl = ConfigHelper.Get<string>("SiteRootUrl");
+                    string activeUrl = $"{siteUrl}/Register/UserActivate/{rs.Results.ActivateGuid}";
+                    string body = $"Merhaba {rs.Results.Name} {rs.Results.Surname};<br><br>Hesabınızı aktifleştirmek için <a href='{activeUrl}' target='_blank'>tıklayınız</a>";
+                    MailHelper.SendMail(body, rs.Results.Email,"My Evernote Hesap Aktifleştirme");
                 }
             }
 
@@ -72,6 +76,27 @@ namespace MyEvernote.BusinessLayer
             }
             return loginResult;
 
+        }
+
+        public Result<EvernoteUser> ActivateUser(Guid activateId)
+        {
+            Result<EvernoteUser> activateResult = new Result<EvernoteUser>();
+            activateResult.Results = repoUser.Find(x => x.ActivateGuid == activateId);
+            if (activateResult.Results!=null)
+            {
+                if (activateResult.Results.isActive)
+                {
+                    activateResult.AddError(ErrorMessageCode.UserAlReadyActive, "Kullanıcı zaten aktive edilmiştir.");
+                    return activateResult;
+                }
+                activateResult.Results.isActive = true;
+                repoUser.Update(activateResult.Results);
+            }
+            else
+            {
+                activateResult.AddError(ErrorMessageCode.ActivateIdDoesNotExists, "Aktifleştirecek kullanıcı bulunamadı.");
+            }
+            return activateResult;
         }
     }
 }

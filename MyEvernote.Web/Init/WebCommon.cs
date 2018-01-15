@@ -16,7 +16,11 @@ namespace MyEvernote.Web.Init
                 EvernoteUser user = HttpContext.Current.Session["login"] as EvernoteUser;
                 return user.UserName;
             }
-            return null;
+            else
+            {
+                return "System";
+            }
+            
         }
     }
 }

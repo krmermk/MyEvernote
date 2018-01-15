@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using MyEvernote.Entities
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -20,6 +22,14 @@
     @RenderSection("head", false)
 </head>
 <body>
+    @{
+        EvernoteUser user = null;
+
+        if (Session["login"] != null)
+        {
+            user = Session["login"] as EvernoteUser;
+        }
+    }
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -53,30 +63,35 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/Login/Login">
-                            <span class="glyphicon glyphicon-log-in"></span>
-                            Giriş Yap
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon"></span>
-                            Üye Ol
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                           Kerem ERMEK
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-user"></span>Profil</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-wrench"></span>Yönetim</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Çıkış Yap</a></li>
-                        </ul>
-                    </li>
-
+                    @if (user == null)
+                    {
+                        <li>
+                            <a href="/Login/Login">
+                                <span class="glyphicon glyphicon-log-in"></span>
+                                Giriş Yap
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Register/Register">
+                                <span class="glyphicon glyphicon"></span>
+                                Üye Ol
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                @user.Name&nbsp;@user.Surname
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><span class="glyphicon glyphicon-user"></span>Profil</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-wrench"></span>Yönetim</a></li>
+                                <li><a href="/Login/Logout"><span class="glyphicon glyphicon-log-out"></span>Çıkış Yap</a></li>
+                            </ul>
+                        </li>
+                    }
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

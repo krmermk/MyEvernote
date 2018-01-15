@@ -102,6 +102,7 @@
     <Content Include="Content\css\Login-Register.css" />
     <Content Include="Content\css\shop-homepage.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\user-image.jpg" />
     <Content Include="Content\index.html" />
     <Content Include="Global.asax" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
@@ -131,6 +132,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -148,6 +150,10 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
     <Content Include="Views\Register\RegisterOK.cshtml" />
+    <Content Include="Views\Register\UserActivateOk.cshtml" />
+    <Content Include="Views\Register\UserActivateCancel.cshtml" />
+    <Content Include="Views\Profile\ShowProfile.cshtml" />
+    <Content Include="Views\Profile\EditProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
