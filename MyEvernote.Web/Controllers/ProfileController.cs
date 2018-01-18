@@ -1,4 +1,6 @@
-﻿using MyEvernote.Entities;
+﻿using MyEvernote.BusinessLayer;
+using MyEvernote.Entities;
+using MyEvernote.Web.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,19 @@ namespace MyEvernote.Web.Controllers
         // GET: Profile
         public ActionResult ShowProfile()
         {
-            return View();
+            EvernoteUser currentUser = Session["login"] as EvernoteUser;
+            EvernoteUserManager eum = new EvernoteUserManager();
+            Result<EvernoteUser> res = eum.GetUserById(currentUser.ID);
+            if (res.Errors.Count > 0)
+            {
+                ErrorViewModel err = new ErrorViewModel()
+                {
+                    Title = "Hata Oluştu",
+                    Items = res.Errors
+                };
+                return View("Error", err);
+            }
+            return View(res.Results);
         }
         public ActionResult EditProfile()
         {

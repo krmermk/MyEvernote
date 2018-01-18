@@ -18,16 +18,50 @@
         <div class="col-md-2">
             <img src="~/Content/images/@Model.ImagesFileName" class="img-circle" width="128" height="128" />
         </div>
-            
+
         <div class="col-md-10">
             <h3>@(Model.Name + " " + Model.Surname)</h3>
             <br />
             <h5><b>@Html.DisplayNameFor(model => model.UserName) : </b>@Model.UserName</h5>
             <h5><b>@Html.DisplayNameFor(model => model.Email) : </b>@Model.Email</h5>
             <br />
-            <h5><a href="#">More... </a></h5>
+            <h5><button class="btn btn-info btn-xs">More..</button></h5>
         </div>
 
     </div>
-</div>
 
+    <div class="row">
+        <div id="gizle">
+            <h2>
+                <strong>@Model.Name&nbsp;@Model.Surname</strong>&nbsp; Software Engineer
+            </h2>
+            <hr />
+                @if (Model.AboutUser == null)
+                {
+                <p><strong>Kullanıcı Hakkında bir bilgi girilmemiştir.</strong> </p>
+                }
+                else
+                {
+                    @Model.AboutUser
+                }
+
+
+            </div>
+        </div>
+    </div>
+
+    @section scripts{
+        <script>
+            $(function () {
+                $("footer").hide();
+                $("#gizle").hide();
+            });
+
+            $(document).ready(function () {
+                $("button").click(function () {
+                    $("#gizle").toggle(600);
+                });
+            });
+        </script>
+
+    }

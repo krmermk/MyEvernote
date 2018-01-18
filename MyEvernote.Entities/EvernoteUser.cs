@@ -15,14 +15,16 @@ namespace MyEvernote.Entities
         public string Name { get; set; }
         [StringLength(25)]
         public string Surname { get; set; }
-        [Required,StringLength(30)]
+        [Required, StringLength(30)]
         public string UserName { get; set; }
-        [Required,StringLength(100)]
+        [Required, StringLength(100)]
         public string Email { get; set; }
-        [Required,StringLength(30)]
+        [Required, StringLength(30)]
         public string Password { get; set; }
         [StringLength(30)]
         public string ImagesFileName { get; set; }
+
+        public string AboutUser { get; set; }
 
 
 

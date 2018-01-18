@@ -2,6 +2,7 @@
 using MyEvernote.Entities;
 using MyEvernote.Entities.Messages;
 using MyEvernote.Entities.ValueObjects;
+using MyEvernote.Web.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,16 +31,16 @@ namespace MyEvernote.Web.Controllers
                     res.Errors.ForEach(x => ModelState.AddModelError("", x.Message));
                     return View(model);
                 }
-
-                return RedirectToAction("RegisterOK");
+                SuccessViewModel succ = new SuccessViewModel()
+                {
+                    Title="Kayıt Başarılı",
+                    RedirectingUrl="/Login/Login",
+                };
+                succ.Items.Add("Lütfen e-posta adresine gönderdiğimiz aktivasyon link'ine tıklayarak hesabınızı aktve ediniz. Hesabınızı aktive etmeden iriş yapmaz,not yazamaz ve beğenip yorumyapamazsınız");
+                return View("Success",succ);
             }
             return View(model);
 
-        }
-
-        public ActionResult RegisterOK()
-        {
-            return View();
         }
 
         public ActionResult UserActivate(Guid id)
@@ -50,29 +51,25 @@ namespace MyEvernote.Web.Controllers
                 Result<EvernoteUser> res = eum.ActivateUser(id);
                 if (res.Errors.Count>0)
                 {
-                    TempData["errors"] = res.Errors;
-                    RedirectToAction("UserActivateCancel");
+                    ErrorViewModel err = new ErrorViewModel()
+                    {
+                        Title="Geçersiz İşlem",
+                        Items=res.Errors
+                    };
+                    return View("Error",err);
                 }
-                return RedirectToAction("UserActivateOk");
+
+                SuccessViewModel succ = new SuccessViewModel()
+                {
+                    Title = "Hesap Aktifleştirildi",
+                    RedirectingUrl = "/Login/Login",
+                };
+                succ.Items.Add("Hesabınınz aktifleştirildi. Artık siteme giriş yapabilir,not yazabilir ve beğenip yorum yapabilirsiniz");
+                return View("Success", succ);
             }
 
             return View();
         }
 
-        public ActionResult UserActivateOk()
-        {
-            return View();
-        }
-
-        public ActionResult UserActivateCancel()
-        {
-            List<ErrorMessageObj> errors = null;
-            if (TempData["errors"]!=null)
-            {
-                errors = TempData["errors"] as List<ErrorMessageObj>;
-            }
-            
-            return View(errors);
-        }
     }
 }

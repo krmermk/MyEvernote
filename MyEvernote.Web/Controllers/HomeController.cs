@@ -1,5 +1,6 @@
 ﻿using MyEvernote.BusinessLayer;
 using MyEvernote.Entities;
+using MyEvernote.Web.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,6 @@ namespace MyEvernote.Web.Controllers
             NoteManager nm = new NoteManager();
             return View("Index",nm.GetAllNotes().OrderByDescending(x => x.LikeCount).ToList());
         }
-
-
+        
     }
 }

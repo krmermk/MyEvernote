@@ -34,7 +34,7 @@ namespace MyEvernote.BusinessLayer
             {
                 int dbResult = repoUser.Insert(new EvernoteUser()
                 {
-                    Name =data.Name,
+                    Name = data.Name,
                     Surname = data.Surname,
                     UserName = data.Username,
                     Email = data.Email,
@@ -50,29 +50,40 @@ namespace MyEvernote.BusinessLayer
                     string siteUrl = ConfigHelper.Get<string>("SiteRootUrl");
                     string activeUrl = $"{siteUrl}/Register/UserActivate/{rs.Results.ActivateGuid}";
                     string body = $"Merhaba {rs.Results.Name} {rs.Results.Surname};<br><br>Hesabınızı aktifleştirmek için <a href='{activeUrl}' target='_blank'>tıklayınız</a>";
-                    MailHelper.SendMail(body, rs.Results.Email,"My Evernote Hesap Aktifleştirme");
+                    MailHelper.SendMail(body, rs.Results.Email, "My Evernote Hesap Aktifleştirme");
                 }
             }
 
             return rs;
         }
 
+        public Result<EvernoteUser> GetUserById(int id)
+        {
+            Result<EvernoteUser> res = new Result<EvernoteUser>();
+            res.Results = repoUser.Find(x => x.ID == id && x.IsDeleted == false);
+            if (res.Results == null)
+            {
+                res.AddError(ErrorMessageCode.UserNotFound, "Kullanıcı bulunamadı");
+            }
+            return res;
+        }
+
         public Result<EvernoteUser> LoginUser(LoginViewModel data)
         {
             Result<EvernoteUser> loginResult = new Result<EvernoteUser>();
             loginResult.Results = repoUser.Find(x => x.UserName == data.Username && x.Password == data.Password);
-            
+
             if (loginResult.Results != null)
             {
                 if (!loginResult.Results.isActive)
                 {
-                    loginResult.AddError(ErrorMessageCode.UserIsNotActive,"Kullanıcı aktive edilmemiştir.");
+                    loginResult.AddError(ErrorMessageCode.UserIsNotActive, "Kullanıcı aktive edilmemiştir.");
                 }
 
             }
             else
             {
-                loginResult.AddError(ErrorMessageCode.UsernameOrPasswordWrong,"Kullanıcı ya da Şifre hatalı.");
+                loginResult.AddError(ErrorMessageCode.UsernameOrPasswordWrong, "Kullanıcı ya da Şifre hatalı.");
             }
             return loginResult;
 
@@ -82,7 +93,7 @@ namespace MyEvernote.BusinessLayer
         {
             Result<EvernoteUser> activateResult = new Result<EvernoteUser>();
             activateResult.Results = repoUser.Find(x => x.ActivateGuid == activateId);
-            if (activateResult.Results!=null)
+            if (activateResult.Results != null)
             {
                 if (activateResult.Results.isActive)
                 {

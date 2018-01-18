@@ -22,6 +22,7 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
                 Password = "123",
                 ImagesFileName = "user-image.jpg",
                 ActivateGuid = Guid.NewGuid(),
+                AboutUser = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed interdum dolor at consequat aliquet.Quisque sollicitudin dolor nunc, non imperdiet ex hendrerit sagittis.Maecenas tortor odio,consequat quis vestibulum ut, acinia sed augue.Nam vel metus libero.Nam a condimentum mi, ut elementum felis. Vivamus interdum nibh quam, at accumsan purus placerat imperdiet.Nulla malesuada fringilla ligula,  sed luctus nulla sagittis vitae.Mauris est est, venenatis in nibh sit amet, maximus consequat urna. In vitae mi eget velit condimentum consequat vitae ut erat.Fusce ac metus nec sapien eleifend cursus.Aliquam a arcu libero.Ut sodales nisl ut dolor ultricies, in pulvinar nunc feugiat.  Sed sed pretium risus.Nam at egestas sem.Morbi vulputate tempus laoreet.Proin eu ornare dolor, et posuere urna.Aenean vel aliquet metus, nec dictum arcu.Duis sed posuere eros.Ut elementum magna sed augue condimentum aliquam.Aenean rutrum elementum justo eget semper.Cras tempor malesuada tellus.Lorem ipsum dolor sit amet,  consectetur adipiscing elit.Pellentesque a nulla a lacus dictum commodo at vel tellus.Ut sit amet iaculis tortor.Cras eu felis sit amet ex ultricies finibus.Suspendisse ultrices enim et fermentum rutrum.Nullam convallis velit quis libero volutpat laoreet.Sed sed dapibus nunc, ut bibendum sem.Sed nibh risus, convallis eu aliquam sit amet, fermentum quis nunc.Proin in tempor leo.Praesent id tortor ac ipsum imperdiet rutrum.Integer porta urna sed dui vulputate luctus.Vestibulum ac sem eget massa consectetur egestas quis sed risus.",
                 isActive = true,
                 isAdmin = true,
                 ModifiedUser = "kerem",
@@ -35,6 +36,7 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
                 Email = "ali@ali.com",
                 Password = "1234",
                 ImagesFileName = "user-image.jpg",
+                AboutUser = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed interdum dolor at consequat aliquet.Quisque sollicitudin dolor nunc, non imperdiet ex hendrerit sagittis.Maecenas tortor odio,consequat quis vestibulum ut, acinia sed augue.Nam vel metus libero.Nam a condimentum mi, ut elementum felis. Vivamus interdum nibh quam, at accumsan purus placerat imperdiet.Nulla malesuada fringilla ligula,  sed luctus nulla sagittis vitae.Mauris est est, venenatis in nibh sit amet, maximus consequat urna. In vitae mi eget velit condimentum consequat vitae ut erat.Fusce ac metus nec sapien eleifend cursus.Aliquam a arcu libero.Ut sodales nisl ut dolor ultricies, in pulvinar nunc feugiat.  Sed sed pretium risus.Nam at egestas sem.Morbi vulputate tempus laoreet.Proin eu ornare dolor, et posuere urna.Aenean vel aliquet metus, nec dictum arcu.Duis sed posuere eros.Ut elementum magna sed augue condimentum aliquam.Aenean rutrum elementum justo eget semper.Cras tempor malesuada tellus.Lorem ipsum dolor sit amet,  consectetur adipiscing elit.Pellentesque a nulla a lacus dictum commodo at vel tellus.Ut sit amet iaculis tortor.Cras eu felis sit amet ex ultricies finibus.Suspendisse ultrices enim et fermentum rutrum.Nullam convallis velit quis libero volutpat laoreet.Sed sed dapibus nunc, ut bibendum sem.Sed nibh risus, convallis eu aliquam sit amet, fermentum quis nunc.Proin in tempor leo.Praesent id tortor ac ipsum imperdiet rutrum.Integer porta urna sed dui vulputate luctus.Vestibulum ac sem eget massa consectetur egestas quis sed risus.",
                 ActivateGuid = Guid.NewGuid(),
                 isActive = true,
                 ModifiedUser = "kerem",
@@ -54,6 +56,7 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
                     Email = FakeData.NetworkData.GetEmail(),
                     Password = "1234",
                     ImagesFileName = "user-image.jpg",
+                    AboutUser = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed interdum dolor at consequat aliquet.Quisque sollicitudin dolor nunc, non imperdiet ex hendrerit sagittis.Maecenas tortor odio,consequat quis vestibulum ut, acinia sed augue.Nam vel metus libero.Nam a condimentum mi, ut elementum felis. Vivamus interdum nibh quam, at accumsan purus placerat imperdiet.Nulla malesuada fringilla ligula,  sed luctus nulla sagittis vitae.Mauris est est, venenatis in nibh sit amet, maximus consequat urna. In vitae mi eget velit condimentum consequat vitae ut erat.Fusce ac metus nec sapien eleifend cursus.Aliquam a arcu libero.Ut sodales nisl ut dolor ultricies, in pulvinar nunc feugiat.  Sed sed pretium risus.Nam at egestas sem.Morbi vulputate tempus laoreet.Proin eu ornare dolor, et posuere urna.Aenean vel aliquet metus, nec dictum arcu.Duis sed posuere eros.Ut elementum magna sed augue condimentum aliquam.Aenean rutrum elementum justo eget semper.Cras tempor malesuada tellus.Lorem ipsum dolor sit amet,  consectetur adipiscing elit.Pellentesque a nulla a lacus dictum commodo at vel tellus.Ut sit amet iaculis tortor.Cras eu felis sit amet ex ultricies finibus.Suspendisse ultrices enim et fermentum rutrum.Nullam convallis velit quis libero volutpat laoreet.Sed sed dapibus nunc, ut bibendum sem.Sed nibh risus, convallis eu aliquam sit amet, fermentum quis nunc.Proin in tempor leo.Praesent id tortor ac ipsum imperdiet rutrum.Integer porta urna sed dui vulputate luctus.Vestibulum ac sem eget massa consectetur egestas quis sed risus.",
                     ActivateGuid = Guid.NewGuid(),
                     isActive = true,
                     ModifiedUser = "kerem",
@@ -87,31 +90,31 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
                     {
                         Title = FakeData.TextData.GetAlphabetical(FakeData.NumberData.GetNumber(5, 15)),
                         Text = FakeData.TextData.GetSentences(FakeData.NumberData.GetNumber(1, 3)),
-                        NvgCategory=cat,
+                        NvgCategory = cat,
                         LikeCount = FakeData.NumberData.GetNumber(1, 9),
                         NvgUser = owner,
-                        ModifiedOn=FakeData.DateTimeData.GetDatetime(DateTime.Now.AddYears(-1),DateTime.Now),
-                        ModifiedUser= owner.UserName
+                        ModifiedOn = FakeData.DateTimeData.GetDatetime(DateTime.Now.AddYears(-1), DateTime.Now),
+                        ModifiedUser = owner.UserName
                     };
 
                     cat.NvgNote.Add(note);
                     //Adding fake comments
-                    for (int j = 0; j< FakeData.NumberData.GetNumber(3,5); j++)
+                    for (int j = 0; j < FakeData.NumberData.GetNumber(3, 5); j++)
                     {
                         EvernoteUser commentOwner = userList[FakeData.NumberData.GetNumber(0, userList.Count - 1)];
                         EvernoteComment commnet = new EvernoteComment()
                         {
-                            Text = FakeData.TextData.GetSentence(),                            
-                            NvgUser= commentOwner,
+                            Text = FakeData.TextData.GetSentence(),
+                            NvgUser = commentOwner,
                             ModifiedOn = FakeData.DateTimeData.GetDatetime(DateTime.Now.AddYears(-1), DateTime.Now),
                             ModifiedUser = commentOwner.UserName
-                            
+
                         };
 
                         note.NvgComment.Add(commnet);
                     }
 
-                   
+
                     for (int m = 0; m < note.LikeCount; m++)
                     {
                         Liked liked = new Liked()
@@ -119,7 +122,7 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
                             NvgEverUser = userList[m]
                         };
                         note.NvgLiked.Add(liked);
-                        
+
                     }
                 }
             }
