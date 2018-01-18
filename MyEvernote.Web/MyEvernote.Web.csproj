@@ -103,6 +103,7 @@
     <Content Include="Content\css\shop-homepage.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\user-image.jpg" />
+    <Content Include="Content\images\user_1.jpeg" />
     <Content Include="Content\index.html" />
     <Content Include="Global.asax" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />

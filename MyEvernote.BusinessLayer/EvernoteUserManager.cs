@@ -37,6 +37,7 @@ namespace MyEvernote.BusinessLayer
                     Name = data.Name,
                     Surname = data.Surname,
                     UserName = data.Username,
+                    ImagesFileName = "user-image.jpg",
                     Email = data.Email,
                     Password = data.Password,
                     ActivateGuid = Guid.NewGuid(),
@@ -55,6 +56,35 @@ namespace MyEvernote.BusinessLayer
             }
 
             return rs;
+        }
+
+        public Result<EvernoteUser> UpdateProfile(EvernoteUser data)
+        {
+            EvernoteUser user = repoUser.Find(x=>x.Email == data.Email || x.UserName == data.UserName);
+            Result<EvernoteUser> res = new Result<EvernoteUser>();
+            if (user != null && user.ID != data.ID)
+            {
+                if (user.UserName == data.UserName)
+                {
+                    res.AddError(ErrorMessageCode.UsernameAlreadyExists, "Kullanıcı Adı Kayıtlı.");
+                }
+                return res;
+            }
+            res.Results = repoUser.Find(x => x.ID == data.ID);
+            res.Results.Name = data.Name;
+            res.Results.Surname = data.Surname;
+            res.Results.AboutUser = data.AboutUser;
+            res.Results.UserName = data.UserName;
+            res.Results.Password = data.Password;
+            if (string.IsNullOrEmpty(data.ImagesFileName) == false)
+            {
+                res.Results.ImagesFileName = data.ImagesFileName;
+            }
+            if (repoUser.Update(res.Results) == 0)
+            {
+                res.AddError(ErrorMessageCode.ProfileCouldNotUpdate, "Profil Güncellenemedi");
+            }
+            return res;
         }
 
         public Result<EvernoteUser> GetUserById(int id)
