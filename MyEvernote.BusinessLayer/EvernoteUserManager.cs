@@ -60,7 +60,7 @@ namespace MyEvernote.BusinessLayer
 
         public Result<EvernoteUser> UpdateProfile(EvernoteUser data)
         {
-            EvernoteUser user = repoUser.Find(x => x.Id != data.Id && (x.Username == data.Username || x.Email == data.Email));
+            EvernoteUser user = repoUser.Find(x => x.ID != data.ID && (x.UserName == data.UserName || x.Email == data.Email));
             Result<EvernoteUser> res = new Result<EvernoteUser>();
             if (user != null && user.ID != data.ID)
             {
