@@ -1,0 +1,56 @@
+﻿@model MyEvernote.Entities.EvernoteUser
+
+@{
+    ViewBag.Title = "Kullanıcı Bilgileri";
+}
+
+<div class="container">
+
+    <div class="row">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-2">
+            <img src="~/Content/images/@Model.ImagesFileName" class="img-circle" width="128" height="128" />
+        </div>
+
+        <div class="col-md-10">
+            <h3>@(Model.Name + " " + Model.Surname)</h3>
+            <br />
+            <h5><b>@Html.DisplayNameFor(model => model.UserName) : </b>@Model.UserName</h5>
+            <h5><b>@Html.DisplayNameFor(model => model.Email) : </b>@Model.Email</h5>
+            <h5>
+                <b>@Html.LabelFor(model => model.isAdmin, "Admin") : </b>
+                @if (Model.isAdmin == true)
+                {
+                    <span>Evet</span>
+                }
+                else
+                {
+                    <span>Hayır</span>
+                }
+            </h5>
+            <h5><b>@Html.DisplayNameFor(model => model.AboutUser) : </b></h5>
+            @if (Model.AboutUser == null)
+            {
+                <p><strong>Kullanıcı Hakkında bir bilgi girilmemiştir.</strong> </p>
+            }
+            else
+            {
+                @Model.AboutUser
+            }
+        </div>
+    </div>
+    <div class="row">
+        <br />
+        <div class="col-md-offset-2 col-md-10">
+            <a href="/EvernoteUser/Index" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Geri Dön </a>
+        </div>
+    </div>
+</div>
+
+
+
