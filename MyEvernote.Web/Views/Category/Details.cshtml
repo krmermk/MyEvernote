@@ -1,0 +1,50 @@
+﻿@model MyEvernote.Entities.Category
+
+@{
+    ViewBag.Title = "Kateori Detay";
+}
+<div class="container">
+    <div class="row">
+        <h2>@Model.Title</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>@Html.DisplayNameFor(model => model.CreatedOn)</th>
+                    <th>@Html.DisplayNameFor(model => model.ModifiedUser)</th>
+                    <th>
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ModifiedUser)
+                    </td>
+                    <td>
+                        <a href="/Category/Edit/@Model.ID" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> Düzenle</a>
+
+                        <a href="/Category/Index" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Geri Dön</a>
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+    </div>
+</div>
+

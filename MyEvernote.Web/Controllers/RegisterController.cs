@@ -1,4 +1,5 @@
 ﻿using MyEvernote.BusinessLayer;
+using MyEvernote.BusinessLayer.ResultManager;
 using MyEvernote.Entities;
 using MyEvernote.Entities.Messages;
 using MyEvernote.Entities.ValueObjects;
@@ -13,6 +14,8 @@ namespace MyEvernote.Web.Controllers
 {
     public class RegisterController : Controller
     {
+      private  EvernoteUserManager eum = new EvernoteUserManager();
+
         // GET: Register
         public ActionResult Register()
         {
@@ -24,7 +27,6 @@ namespace MyEvernote.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                EvernoteUserManager eum = new EvernoteUserManager();
                 Result<EvernoteUser> res = eum.RegisterUser(model);
                 if (res.Errors.Count > 0)
                 {
@@ -47,7 +49,6 @@ namespace MyEvernote.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                EvernoteUserManager eum = new EvernoteUserManager();
                 Result<EvernoteUser> res = eum.ActivateUser(id);
                 if (res.Errors.Count>0)
                 {

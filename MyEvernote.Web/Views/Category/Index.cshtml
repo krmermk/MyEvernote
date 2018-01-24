@@ -1,0 +1,59 @@
+﻿
+@model IEnumerable<MyEvernote.Entities.Category>
+
+@{
+    ViewBag.Title = "Kategoriler";
+}
+<div class="container">
+    <div class="row"><h2>@ViewBag.Title</h2></div>
+    <div class="row">
+        <p>
+            <a href="/Category/Create" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span>Yeni Kategori </a>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.CreatedOn)</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedUser)
+                </th>
+                <th>
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedUser)
+                    </td>
+                    <td>
+                        <a href="/Category/Edit/@item.ID" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-edit"></span> Düzenle</a>
+                        <a href="/Category/Details/@item.ID" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list"></span> Detaylar</a>
+                        <a href="/Category/Delete/@item.ID" class="btn btn-danger btn-xs" onclick="return confirm('Hesabınızı silmek istediğinize emin misiniz?');">
+                            <span class="glyphicon glyphicon-trash"></span> Sil
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+
+

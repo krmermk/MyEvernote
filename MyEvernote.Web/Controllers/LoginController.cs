@@ -1,4 +1,5 @@
 ﻿using MyEvernote.BusinessLayer;
+using MyEvernote.BusinessLayer.ResultManager;
 using MyEvernote.Entities;
 using MyEvernote.Entities.ValueObjects;
 using System;
@@ -11,6 +12,7 @@ namespace MyEvernote.Web.Controllers
 {
     public class LoginController : Controller
     {
+        private EvernoteUserManager eum = new EvernoteUserManager();
         // GET: Login
         public ActionResult Login()
         {
@@ -21,7 +23,7 @@ namespace MyEvernote.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                EvernoteUserManager eum = new EvernoteUserManager();
+               
                 Result<EvernoteUser> res = eum.LoginUser(model);
                 if (res.Errors.Count > 0)
                 {

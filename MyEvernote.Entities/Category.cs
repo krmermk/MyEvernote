@@ -5,15 +5,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace MyEvernote.Entities
 {
     [Table("Category")]
     public class Category:BaseEntity
     {
-        [Required,StringLength(50)]
+        [DisplayName("Başlık"), Required(ErrorMessage = "{0} alanı boş geçilemez."),StringLength(50, ErrorMessage = "{0} alanı max. {1} karakter olmalıdır.")]
         public string Title { get; set; }
-        [StringLength(100)]
+        [DisplayName("Tanım"), StringLength(100,ErrorMessage = "{0} alanı max. {1} karakter olmalıdır.")]
         public string Description { get; set; }
 
         //Notes NvgNote

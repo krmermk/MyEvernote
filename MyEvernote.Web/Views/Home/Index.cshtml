@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 @using MyEvernote.Entities
-@model List<Note>
+@model IEnumerable<Note>
 
 <div class="container">
     <div class="row">
@@ -96,4 +96,6 @@
         </div>
     </div>
 </div>
-
+@section footer{
+    @Html.Partial("_PartialFooter")
+}

@@ -10,6 +10,8 @@ namespace MyEvernote.Entities.Messages
         UserAlReadyActive = 205,
         ActivateIdDoesNotExists = 206,
         UserNotFound = 207,
-        ProfileCouldNotUpdate = 208
+        ProfileCouldNotUpdate = 208,
+        UserCouldNotRemove = 209,
+        UserCouldNotFind = 210
     }
 }

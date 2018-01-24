@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyEvernote.BusinessLayer
+namespace MyEvernote.BusinessLayer.ResultManager
 {
     //KeyValuePair:içerisine İki farklı tipalabiliyor.
     public class Result<T> where T : class

@@ -1,19 +1,16 @@
 ﻿using MyEvernote.Common;
-using MyEvernote.DataAccessLayer;
-using MyEvernote.DataAccessLayer.Interface;
+using MyEvernote.Core.DataAccess;
 using MyEvernote.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyEvernote.DataAccessLayer.EntityFramework
 {
 
-    public class Repository<T>:RepositoryBase, IRepository<T> where T : class
+    public class Repository<T>:RepositoryBase, IDataAccess<T> where T : class
     {
         
         private DbSet<T> _set;
@@ -30,10 +27,7 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
 
         }
 
-        public IQueryable<T> ListQueryable()
-        {
-            return _set.AsQueryable<T>();
-        }
+           
 
         public List<T> List(Expression<Func<T,bool>> where)=> _set.Where(where).ToList();     
 
@@ -80,6 +74,11 @@ namespace MyEvernote.DataAccessLayer.EntityFramework
             return _set.FirstOrDefault(where);
         }
 
-       
+       public IQueryable<T> ListQueryable(Expression<Func<T, bool>> where) => _set.Where(where).AsQueryable<T>();
+
+        public IQueryable<T> ListQueryable()
+        {
+           return _set.AsQueryable<T>();
+        }
     }
 }

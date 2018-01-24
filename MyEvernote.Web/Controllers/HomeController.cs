@@ -12,17 +12,12 @@ namespace MyEvernote.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private NoteManager noteManager = new NoteManager();
+        private CategoryManager categoryManager = new CategoryManager();
         // GET: Home
         public ActionResult Index()
         {
-            //if (TempData["cm"]!=null)
-            //{
-            //    return View(TempData["cm"] as List<Note>);
-            //}
-            NoteManager nm = new NoteManager();
-
-            //return View(nm.GetAllNote().OrderByDescending(x=>x.ModifiedOn));
-            return View(nm.GetAllNotes().OrderByDescending(x => x.ModifiedOn).ToList());
+            return View(noteManager.ListQueryable(a => a.IsDeleted == false).OrderByDescending(x => x.ModifiedOn).ToList());
         }
 
         public ActionResult ByCategory(int? id)
@@ -31,21 +26,19 @@ namespace MyEvernote.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CategoryManager cm = new CategoryManager();
-            Category cat = cm.GetCategoryById(id.Value);
+            Category cat = categoryManager.Find(x => x.ID == id.Value);
 
             if (cat == null)
             {
                 return HttpNotFound();
             }
-            return View("Index", cat.NvgNote.OrderByDescending(x=>x.ModifiedOn).ToList());
+            return View("Index", cat.NvgNote.OrderByDescending(x => x.ModifiedOn).ToList());
         }
 
         public ActionResult MostLiked()
         {
-            NoteManager nm = new NoteManager();
-            return View("Index",nm.GetAllNotes().OrderByDescending(x => x.LikeCount).ToList());
+            return View("Index", noteManager.ListQueryable(a=>a.IsDeleted==false).OrderByDescending(x => x.LikeCount).ToList());
         }
-        
+
     }
 }

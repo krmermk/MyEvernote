@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,19 +12,19 @@ namespace MyEvernote.Entities
     [Table("EvernoteUser")]
     public class EvernoteUser : BaseEntity
     {
-        [StringLength(25)]
+        [DisplayName("Ad"),StringLength(25,ErrorMessage ="{0} alanı max. {1} karakter olmalıdır.")]
         public string Name { get; set; }
-        [StringLength(25)]
+        [DisplayName("Soyad"), StringLength(25, ErrorMessage = "{0} alanı max. {1} karakter olmalıdır.")]
         public string Surname { get; set; }
-        [Required, StringLength(30)]
+        [ DisplayName("Kullanıcı Adı"), Required(ErrorMessage = "{0} alanı gereklidir."), StringLength(30, ErrorMessage = "{0} alanı max. {1} karakter olmalıdır.")]
         public string UserName { get; set; }
-        [Required, StringLength(100)]
+        [ DisplayName("Email"), Required(ErrorMessage = "{0} alanı gereklidir."), StringLength(100, ErrorMessage = "{0} alanı max. {1} karakter olmalıdır.")]
         public string Email { get; set; }
-        [Required, StringLength(30)]
+        [ DisplayName("Şifre"), Required(ErrorMessage = "{0} alanı gereklidir."), StringLength(30, ErrorMessage = "{0} alanı max. {1} karakter olmalıdır.")]
         public string Password { get; set; }
         [StringLength(30)]
         public string ImagesFileName { get; set; }
-
+        [DisplayName("Yazar Hakkında")]
         public string AboutUser { get; set; }
 
 

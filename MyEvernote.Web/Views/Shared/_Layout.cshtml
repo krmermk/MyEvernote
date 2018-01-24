@@ -81,6 +81,39 @@
                     else
                     {
                         <li class="dropdown">
+                            <a href="/Note/MyNotes" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-wrench"></span> Yönetim <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#"><span class="glyphicon glyphicon-plus"></span>Not Ekle</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#"><span class="glyphicon glyphicon-th-list"></span>Notlarım</a>
+                                </li>
+                                <li>
+                                    <a href="#"><span class="glyphicon glyphicon-heart"></span>Beğendiklerim</a>
+                                </li>
+
+                                @if (user.isAdmin)
+                                {
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="/Category/Index"><span class="glyphicon glyphicon-th-list"></span>Kategoriler</a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><span class="glyphicon glyphicon-plus"></span>Kullanıcı Ekle</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="glyphicon glyphicon-th-list"></span>Kullanıcılar</a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                 @user.Name&nbsp;@user.Surname
                                 <span class="caret"></span>
@@ -89,13 +122,18 @@
                                 <li class="dropdown">
                                     <a href="/Profile/ShowProfile"><span class="glyphicon glyphicon-user"></span>Profil</a>
                                 </li>
-                                <li class="dropdown">
+                                <li>
                                     <a href="/Profile/EditProfile"><span class="glyphicon glyphicon-user"></span>Profil Düzenle</a>
                                 </li>
-                                <li><a href="#"><span class="glyphicon glyphicon-wrench"></span>Yönetim</a></li>
+                                <li>
+                                    <a href="/Profile/RemoveProfile" onclick="return confirm('Hesabınızı silmek istediğinize emin misiniz?');">
+                                        <span class="glyphicon glyphicon-trash"></span> Profili Sil
+                                    </a>
+                                </li>
                                 <li><a href="/Login/Logout"><span class="glyphicon glyphicon-log-out"></span>Çıkış Yap</a></li>
                             </ul>
                         </li>
+
                     }
                 </ul>
             </div>
@@ -108,19 +146,7 @@
     @RenderBody()
     <!-- Page Content -->
     <!-- /.container -->
-    <div class="container">
-        <footer>
-            <div class="row">
-
-                <div class="col-lg-6 text-center">
-                    <p>Tüm Hakları Saklıdır &copy; My Evernote @DateTime.Now.Year</p>
-                </div>
-                <div class="col-lg-6 text-center text-warning">
-                    <p><strong>Developer by Kerem Ermek</strong></p>
-                </div>
-            </div>
-        </footer>
-    </div>
+    @RenderSection("footer", false)
     <!-- /.container -->
     <!-- jQuery -->
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>

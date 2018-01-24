@@ -5,6 +5,7 @@
 }
 
 <link href="~/Content/css/page.css" rel="stylesheet" />
+<link href="~/Content/css/validation-summary.css" rel="stylesheet" />
 
 @using (Html.BeginForm())
 {
@@ -56,12 +57,4 @@
             </div>
         </div>
     </section>
-}
-
-@section scripts{
-    <script>
-        $(function () {
-            $("footer").hide();
-        });
-    </script>
 }

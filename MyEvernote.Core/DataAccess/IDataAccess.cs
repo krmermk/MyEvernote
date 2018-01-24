@@ -5,13 +5,15 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyEvernote.DataAccessLayer.Interface
+namespace MyEvernote.Core.DataAccess
 {
-    interface IRepository<T>
+    public interface IDataAccess<T>
     {
         List<T> List();
 
         IQueryable<T> ListQueryable();
+
+        IQueryable<T> ListQueryable(Expression<Func<T, bool>> where);
 
         List<T> List(Expression<Func<T, bool>> where);
 
