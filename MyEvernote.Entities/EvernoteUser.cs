@@ -32,6 +32,7 @@ namespace MyEvernote.Entities
         [Required]
         public Guid ActivateGuid { get; set; }
         private bool _isAdmin = false;
+        [DisplayName("Admin Mi?")]
         public bool isAdmin
         {
             get { return _isAdmin; }

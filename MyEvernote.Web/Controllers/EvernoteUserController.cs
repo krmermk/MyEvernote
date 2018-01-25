@@ -85,15 +85,6 @@ namespace MyEvernote.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        //// POST: EvernoteUsers/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    EvernoteUser evernoteUser = db.EvernoteUsers.Find(id);
-        //    db.EvernoteUsers.Remove(evernoteUser);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+     
     }
 }

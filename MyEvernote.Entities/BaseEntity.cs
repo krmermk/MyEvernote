@@ -34,6 +34,8 @@ namespace MyEvernote.Entities
 
         [Required, StringLength(30),DisplayName("Düzenleyen Kisi Adı")]
         public string ModifiedUser { get; set; }
+
+        [DisplayName("Silinmiş Mi?")]
         public bool IsDeleted
         {
             get { return _isDelted; }
