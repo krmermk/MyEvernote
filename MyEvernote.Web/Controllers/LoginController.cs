@@ -2,6 +2,7 @@
 using MyEvernote.BusinessLayer.ResultManager;
 using MyEvernote.Entities;
 using MyEvernote.Entities.ValueObjects;
+using MyEvernote.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace MyEvernote.Web.Controllers
 
                     return View(model);
                 }
-                Session["login"] = res.Results;
+               SessionManager.Set<EvernoteUser>("login",res.Results);
 
                 return RedirectToAction("Index", "Home");
             }
@@ -40,7 +41,7 @@ namespace MyEvernote.Web.Controllers
 
         public ActionResult Logout()
         {
-            Session.Clear();
+            SessionManager.Clear();
 
             return RedirectToAction("Login");
         }

@@ -1,6 +1,7 @@
 ﻿using MyEvernote.BusinessLayer;
 using MyEvernote.BusinessLayer.ResultManager;
 using MyEvernote.Entities;
+using MyEvernote.Web.Models;
 using MyEvernote.Web.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -16,8 +17,8 @@ namespace MyEvernote.Web.Controllers
         // GET: Profile
         public ActionResult ShowProfile()
         {
-            EvernoteUser currentUser = Session["login"] as EvernoteUser;
-            Result<EvernoteUser> res = eum.GetUserById(currentUser.ID);
+           
+            Result<EvernoteUser> res = eum.GetUserById(SessionManager.User.ID);
             if (res.Errors.Count > 0)
             {
                 ErrorViewModel err = new ErrorViewModel()
@@ -32,8 +33,7 @@ namespace MyEvernote.Web.Controllers
 
         public ActionResult EditProfile()
         {
-            EvernoteUser currentUser = Session["login"] as EvernoteUser;
-            Result<EvernoteUser> res = eum.GetUserById(currentUser.ID);
+            Result<EvernoteUser> res = eum.GetUserById(SessionManager.User.ID);
             if (res.Errors.Count > 0)
             {
                 ErrorViewModel err = new ErrorViewModel()
@@ -69,7 +69,7 @@ namespace MyEvernote.Web.Controllers
                     };
                     return View("Error", err);
                 }
-                Session["login"] = res.Results; //Profil güncellendiği için Sessionda da güncelleme yapılır.
+                SessionManager.Set<EvernoteUser>("login",res.Results); //Profil güncellendiği için Sessionda da güncelleme yapılır.
                 return RedirectToAction("ShowProfile");
             }
             return View(data);
@@ -78,8 +78,8 @@ namespace MyEvernote.Web.Controllers
 
         public ActionResult RemoveProfile()
         {
-            EvernoteUser currentUser = Session["login"] as EvernoteUser;
-            Result<EvernoteUser> res = eum.RemoveUserById(currentUser.ID);
+          
+            Result<EvernoteUser> res = eum.RemoveUserById(SessionManager.User.ID);
             if (res.Errors.Count > 0)
             {
                 ErrorViewModel err = new ErrorViewModel()
