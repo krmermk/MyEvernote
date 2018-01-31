@@ -77,7 +77,7 @@ namespace MyEvernote.BusinessLayer
             {
                 res.Results.ImagesFileName = data.ImagesFileName;
             }
-            if (Update(res.Results) == 0)
+            if (base.Update(res.Results) == 0)
             {
                 res.AddError(ErrorMessageCode.ProfileCouldNotUpdate, "Profil Güncellenemedi");
             }
@@ -156,6 +156,27 @@ namespace MyEvernote.BusinessLayer
                 activateResult.AddError(ErrorMessageCode.ActivateIdDoesNotExists, "Aktifleştirecek kullanıcı bulunamadı.");
             }
             return activateResult;
+        }
+
+        //Method Hiding: Var olan bir metodu ovirride etmeden  new anahtar kelimesi ile gizleyip terar kullanabilir bu yönteme metot gizleme dener.
+        public new Result<EvernoteUser> Update(EvernoteUser data)
+        {
+            EvernoteUser user = Find(x => x.ID == data.ID && x.IsDeleted == false);
+            Result<EvernoteUser> res = new Result<EvernoteUser>();
+            if (user == null)
+            {
+                res.AddError(ErrorMessageCode.UserCouldNotUpdate, "Kullanıcı Bulunamadı.");
+            }
+
+            res.Results = Find(x => x.ID == data.ID);
+            res.Results.isAdmin = data.isAdmin;
+
+            if (base.Update(res.Results) == 0)
+            {
+                res.AddError(ErrorMessageCode.ProfileCouldNotUpdate, "Profil Güncellenemedi");
+            }
+
+            return res;
         }
     }
 }

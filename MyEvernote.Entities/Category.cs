@@ -12,9 +12,9 @@ namespace MyEvernote.Entities
     [Table("Category")]
     public class Category:BaseEntity
     {
-        [DisplayName("Başlık"), Required(ErrorMessage = "{0} alanı boş geçilemez."),StringLength(50, ErrorMessage = "{0} alanı max. {1} karakter olmalıdır.")]
+        [DisplayName("Kategori Adı"), Required(ErrorMessage = "{0} alanı boş geçilemez."),StringLength(50, ErrorMessage = "{0} alanı max. {1} karakter olmalıdır.")]
         public string Title { get; set; }
-        [DisplayName("Tanım"), StringLength(100,ErrorMessage = "{0} alanı max. {1} karakter olmalıdır.")]
+        [DisplayName("Kategori Açıklaması"), StringLength(100,ErrorMessage = "{0} alanı max. {1} karakter olmalıdır.")]
         public string Description { get; set; }
 
         //Notes NvgNote

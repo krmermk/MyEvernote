@@ -50,6 +50,7 @@
     <Compile Include="CategoryManager.cs" />
     <Compile Include="EvernoteUserManager.cs" />
     <Compile Include="BaseManager\ManagerBase.cs" />
+    <Compile Include="LikedManager.cs" />
     <Compile Include="NoteManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultManager\Result.cs" />

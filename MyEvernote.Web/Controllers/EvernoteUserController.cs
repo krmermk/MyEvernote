@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyEvernote.BusinessLayer;
+using MyEvernote.BusinessLayer.ResultManager;
 using MyEvernote.Entities;
 
 namespace MyEvernote.Web.Controllers
@@ -43,7 +44,7 @@ namespace MyEvernote.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EvernoteUser evernoteUser = userManager.Find(x=>x.ID==id.Value);
+            EvernoteUser evernoteUser = userManager.Find(x => x.ID == id.Value);
             if (evernoteUser == null)
             {
                 return HttpNotFound();
@@ -56,14 +57,17 @@ namespace MyEvernote.Web.Controllers
         public ActionResult Edit(EvernoteUser evernoteUser)
         {
             ModelState.Remove("ModifiedUser");
+            ModelState.Remove("CreatedOn");
+            ModelState.Remove("ModifiedOn");
             ModelState.Remove("Password");
-            ModelState.Remove("ActivateGuid");
-            ModelState.Remove("İmagesFileName");
             if (ModelState.IsValid)
             {
-                EvernoteUser user = userManager.Find(x => x.ID == evernoteUser.ID);
-                user.isAdmin = evernoteUser.isAdmin;
-                userManager.Update(user);
+                Result<EvernoteUser> res = userManager.Update(evernoteUser);
+                if (res.Errors.Count>0)
+                {
+                    res.Errors.ForEach(x=>ModelState.AddModelError("",x.Message));
+                    return View(evernoteUser);
+                }
                 return RedirectToAction("Index");
             }
             return View(evernoteUser);
@@ -85,6 +89,6 @@ namespace MyEvernote.Web.Controllers
             return RedirectToAction("Index");
         }
 
-     
+
     }
 }

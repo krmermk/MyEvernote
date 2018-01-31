@@ -3,18 +3,19 @@
 @{
     ViewBag.Title = "Kullanıcı Yetkilendirme";
 }
-
+<link href="~/Content/css/validation-summary.css" rel="stylesheet" />
 <div class="container">
     <div class="row">
         <h2>@ViewBag.Title</h2>
     </div>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">            @using (Html.BeginForm())
+        <div class="col-md-6 col-md-offset-3">
+            @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
 
                 <div class="form-horizontal">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.ValidationSummary(false)
                     @Html.HiddenFor(model => model.ID)
 
                     <div class="form-group">
@@ -53,7 +54,6 @@
                         <div class="col-md-10">
                             <div class="checkbox">
                                 @Html.EditorFor(model => model.isAdmin)
-                                @Html.ValidationMessageFor(model => model.isAdmin, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>

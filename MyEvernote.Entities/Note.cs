@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -17,13 +18,14 @@ namespace MyEvernote.Entities
             NvgLiked = new List<Liked>();
 
         }
-        [Required, StringLength(60)]
+        [DisplayName("Başlık"), Required, StringLength(60)]
         public string Title { get; set; }
 
-        [Required, StringLength(600)]
+        [DisplayName("İçerik"), Required, StringLength(600)]
         public string Text { get; set; }
-
+        [DisplayName("Not Kategorisi")]
         public int CategoryID { get; set; }
+        [DisplayName("Yazar")]
         public int EvernoteUserID { get; set; }
 
         private int _likeCount = 0;
@@ -34,7 +36,10 @@ namespace MyEvernote.Entities
         }
 
         //Owner NvgUser
+        [DisplayName("Yazar")]
         public virtual EvernoteUser NvgUser { get; set; }
+
+        [DisplayName("Not Kategorisi")]
         public virtual Category NvgCategory { get; set; }
 
         public virtual ICollection<EvernoteComment> NvgComment { get; set; }
